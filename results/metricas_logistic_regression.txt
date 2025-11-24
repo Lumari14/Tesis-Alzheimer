@@ -1,0 +1,19 @@
+Modelo: logistic_regression
+
+Classification report:
+                     precision    recall  f1-score   support
+
+Alzheimer's Disease     0.9167    1.0000    0.9565        11
+             normal     1.0000    0.9375    0.9677        16
+
+           accuracy                         0.9630        27
+          macro avg     0.9583    0.9688    0.9621        27
+       weighted avg     0.9660    0.9630    0.9632        27
+
+
+Matriz de confusión:
+                     Alzheimer's Disease  normal
+Alzheimer's Disease                   11       0
+normal                                 1      15
+
+AUC: 0.9943

@@ -1,0 +1,19 @@
+Modelo: random_forest
+
+Classification report:
+                     precision    recall  f1-score   support
+
+Alzheimer's Disease     0.7857    1.0000    0.8800        11
+             normal     1.0000    0.8125    0.8966        16
+
+           accuracy                         0.8889        27
+          macro avg     0.8929    0.9062    0.8883        27
+       weighted avg     0.9127    0.8889    0.8898        27
+
+
+Matriz de confusión:
+                     Alzheimer's Disease  normal
+Alzheimer's Disease                   11       0
+normal                                 3      13
+
+AUC: 0.9574
