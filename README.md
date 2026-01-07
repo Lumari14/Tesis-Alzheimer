@@ -185,6 +185,7 @@ Marín Ríos, L. (2025). Transcriptomic analysis and machine learning for biomar
 
 **Laura Marín Ríos**  
 Data Science 
+laurism98.lm@gmail.com
 GitHub: https://github.com/Lumari14
 
 
