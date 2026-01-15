@@ -24,27 +24,41 @@ The project demonstrates how machine learning and biological interpretation can 
 ## 🧱 Project Structure
 Tesis-Alzheimer/
 │
-├── src/ # Full analysis pipeline (Python scripts)
-│ ├── descarga_gse5281.py
-│ ├── 01_limpieza_gse5281.py
-│ ├── 02_combinacion_gse5281.py
-│ ├── 03_QC_Limpieza_Combinacion.py
-│ ├── 04_perapacion_datos_modelado.py
-│ ├── 05_modelado_clasificacion_basica.py
-│ ├── 06_Importancia_lineal_y_biomarcadores.py
-│ ├── 07_shap_random_forest.py
-│ ├── 08_cruce_biomarkers.py
-│ ├── 09_cruce_biomarcadores_topN.py
-│ ├──10_tabla_biomarcadores_detallada.py
-│ ├── 11_anotacion_biomarcadores_topN.py
+├── src/                         # Full analysis pipeline (Python scripts)
+│   ├── descarga_gse5281.py               # Download GEO dataset (GSE5281)
+│   ├── 01_limpieza_gse5281.py             # Data cleaning
+│   ├── 02_combinacion_gse5281.py          # Merge expression & metadata
+│   ├── 03_QC_Limpieza_Combinacion.py      # Quality control
 │
-├── results/ # CSV files: metrics, rankings, biomarkers
-├── figures/ # ROC, confusion matrices, SHAP plots, etc.
-├── models/ # Trained ML models (.pkl)
-├── notebooks/ # Additional Jupyter notebooks
-├── data/ # (Structure only; raw data excluded from repo)
+│   ├── 04_preparacion_datos_modelado.py   # Scaling, feature selection, split
+│   ├── 04b_eda_distribuciones.py          # Exploratory data analysis
+│
+│   ├── 05_modelado_clasificacion_basica.py # Logistic Regression & Random Forest
+│   ├── 05b_validacion_overfitting.py       # Cross-validation & overfitting check
+│
+│   ├── 06_importancia_lineal_y_biomarcadores.py
+│   ├── 06b_logreg_coeficientes_top20_display.py
+│
+│   ├── 07_shap_random_forest.py
+│   ├── 07b_shap_rf_top20_summary_plots.py
+│
+│   ├── 08_cruce_biomarcadores.py
+│   ├── 09_cruce_biomarcadores_topN.py
+│
+│   ├── 10_tabla_biomarcadores_detallada.py
+│   ├── 11_anotacion_biomarcadores.py
+│   ├── 12_anotar_probes_a_genes.py
+│   ├── 12b_gene_display_en_results.py
+│   └── genes_anotados.py
+│
+├── results/                     # CSV outputs: metrics, rankings, biomarkers
+├── figures/                     # ROC curves, confusion matrices, SHAP plots
+├── models/                      # Trained models (.pkl)
+├── notebooks/                   # Optional Jupyter notebooks
+├── data/                        # Data structure (raw data excluded)
 │
 └── README.md
+
 
 
 ---
