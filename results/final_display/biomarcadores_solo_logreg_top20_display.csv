@@ -1,0 +1,21 @@
+gene,gene_display,gene_symbol,gene_label,source_logreg,source_shap,in_logreg_top20,in_shap_top20
+219255_x_at,IL17RB (219255_x_at),IL17RB,IL17RB,logreg,,True,False
+222983_s_at,PAIP2 (222983_s_at),PAIP2,PAIP2,logreg,,True,False
+224156_x_at,IL17RB (224156_x_at),IL17RB,IL17RB,logreg,,True,False
+224280_s_at,MTFR1L (224280_s_at),MTFR1L,MTFR1L,logreg,,True,False
+224331_s_at,MRPL36 (224331_s_at),MRPL36,MRPL36,logreg,,True,False
+224366_s_at,REPS1 (224366_s_at),REPS1,REPS1,logreg,,True,False
+224414_s_at,CARD6 (224414_s_at),CARD6,CARD6,logreg,,True,False
+225234_at,CBL (225234_at),CBL,CBL,logreg,,True,False
+225493_at,CCNT1 (225493_at),CCNT1,CCNT1,logreg,,True,False
+225741_at,THUMPD3 (225741_at),THUMPD3,THUMPD3,logreg,,True,False
+226648_at,HIF1AN (226648_at),HIF1AN,HIF1AN,logreg,,True,False
+226879_at,HVCN1 (226879_at),HVCN1,HVCN1,logreg,,True,False
+227051_at,BACE2 (227051_at),BACE2,BACE2,logreg,,True,False
+227068_at,PGK1 (227068_at),PGK1,PGK1,logreg,,True,False
+227260_at,227260_at,,227260_at,logreg,,True,False
+227404_s_at,EGR1 (227404_s_at),EGR1,EGR1,logreg,,True,False
+227730_at,DYM (227730_at),DYM,DYM,logreg,,True,False
+227959_at,ANKRD9 (227959_at),ANKRD9,ANKRD9,logreg,,True,False
+228556_at,YTHDC1 (228556_at),YTHDC1,YTHDC1,logreg,,True,False
+228581_at,KCNJ10 (228581_at),KCNJ10,KCNJ10,logreg,,True,False

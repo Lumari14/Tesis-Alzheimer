@@ -1,0 +1,2 @@
+gene,gene_symbol,gene_label,abs_coef,rank_abs_coef,importance_mean,rank_perm,rank_combined,mean_abs_shap
+223272_s_at,NTPCR,NTPCR,0.0328581987264102,343,0.0,123,233.0,0.0026579147424998

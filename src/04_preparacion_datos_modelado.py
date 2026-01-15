@@ -27,6 +27,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import pickle
+import matplotlib.pyplot as plt
 
 
 # ============================================================
@@ -202,6 +203,82 @@ print("Media de X_train_scaled (aprox 0):", np.mean(X_train_scaled))
 print("Desviación estándar de X_train_scaled (aprox 1):", np.std(X_train_scaled))
 print()
 
+# ============================================================
+# 7. GRÁFICOS: ANTES vs DESPUÉS DEL ESCALADO
+# ============================================================
+""" Objetivo:
+# - Visualizar cómo cambian las distribuciones al aplicar StandardScaler (Z-score)
+# - Generar 3 imágenes:
+#     1) Histograma ANTES del escalado
+#     2) Histograma DESPUÉS del escalado
+#     3) Imagen combinada (antes + después)
+#
+# Nota:
+# - Para que sea interpretable, tomamos solo un subconjunto de genes (p.ej. 50)
+# - Aplanamos (flatten) los valores para ver la distribución global en train
+# - Usamos únicamente X_train y X_train_scaled (evita data leakage y es estándar)
+"""
+
+# Carpeta de salida
+os.makedirs("figures/normalization", exist_ok=True)
+
+# ---- 1) Seleccionar un subconjunto de genes para visualizar ----
+# Recomendación: 50 genes es suficiente y no sobrecarga la figura
+N_GENES_PLOT = 50
+
+# Si tienes gene_cols (lista con los nombres de genes), genial para referencia.
+# Pero para el histograma solo necesitamos valores numéricos.
+# Tomaremos las primeras N columnas (genes) de X_train y X_train_scaled.
+# (También podrías elegir al azar si prefieres.)
+subset_idx = np.arange(min(N_GENES_PLOT, X_train.shape[1]))
+
+# Valores "antes" (sin estandarizar) y "después" (Z-score)
+vals_before = X_train[:, subset_idx].ravel()
+vals_after  = X_train_scaled[:, subset_idx].ravel()
+
+# ---- 2) Histograma ANTES del escalado ----
+plt.figure()
+plt.hist(vals_before, bins=60)
+plt.title(f"Gene expression distribution (TRAIN) - BEFORE scaling (first {len(subset_idx)} genes)")
+plt.xlabel("Expression value")
+plt.ylabel("Frequency")
+out_before = "figures/normalization/hist_before_scaling.png"
+plt.savefig(out_before, dpi=300, bbox_inches="tight")
+plt.close()
+print(f"✅ Guardado: {out_before}")
+
+# ---- 3) Histograma DESPUÉS del escalado ----
+plt.figure()
+plt.hist(vals_after, bins=60)
+plt.title(f"Gene expression distribution (TRAIN) - AFTER StandardScaler (first {len(subset_idx)} genes)")
+plt.xlabel("Z-score value")
+plt.ylabel("Frequency")
+out_after = "figures/normalization/hist_after_scaling.png"
+plt.savefig(out_after, dpi=300, bbox_inches="tight")
+plt.close()
+print(f"✅ Guardado: {out_after}")
+
+# ---- 4) Imagen combinada (antes + después) ----
+# En una sola figura con dos paneles para compararlo visualmente
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+axes[0].hist(vals_before, bins=60)
+axes[0].set_title("BEFORE scaling")
+axes[0].set_xlabel("Expression value")
+axes[0].set_ylabel("Frequency")
+
+axes[1].hist(vals_after, bins=60)
+axes[1].set_title("AFTER StandardScaler (Z-score)")
+axes[1].set_xlabel("Z-score value")
+axes[1].set_ylabel("Frequency")
+
+fig.suptitle(f"Distribution comparison (TRAIN, first {len(subset_idx)} genes)", fontsize=12)
+
+out_combined = "figures/normalization/hist_before_vs_after_scaling.png"
+plt.savefig(out_combined, dpi=300, bbox_inches="tight")
+plt.close(fig)
+print(f"✅ Guardado: {out_combined}")
+
 
 # ============================================================
 # 7. Guardar los datos procesados y el scaler
@@ -250,3 +327,5 @@ print()
 
 print("✅ Preparación de datos para modelado completada.")
 print("Ahora puedes pasar al siguiente paso: entrenar y evaluar modelos de clasificación.")
+
+

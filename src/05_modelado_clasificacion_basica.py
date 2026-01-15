@@ -362,4 +362,88 @@ print(f"   - {results_dir}  -> métricas y lista de genes seleccionados")
 print(f"   - {figures_dir}  -> curvas ROC y matrices de confusión")
 
 
+# ============================================================
+# VISUALIZACIÓN DEL ENTRENAMIENTO (PCA + PREDICCIÓN)
+# ============================================================
+# Objetivo:
+# - Visualizar cómo los modelos separan las clases
+# - Usar PCA solo como herramienta de visualización (no para entrenar)
+
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+
+os.makedirs("figures/training_visualization", exist_ok=True)
+
+# ------------------------------------------------------------
+# 5) Reducir dimensionalidad con PCA (solo para visualización)
+# ------------------------------------------------------------
+pca = PCA(n_components=2, random_state=42)
+X_train_pca = pca.fit_transform(X_train_sel)
+
+# Convertimos etiquetas a numéricas para colorear
+y_train_num = (y_train == "Alzheimer's Disease").astype(int)
+
+# ------------------------------------------------------------
+# 6) Gráfico base: distribución real de las clases
+# ------------------------------------------------------------
+plt.figure()
+plt.scatter(
+    X_train_pca[:, 0],
+    X_train_pca[:, 1],
+    c=y_train_num,
+    alpha=0.7
+)
+plt.xlabel("PCA 1")
+plt.ylabel("PCA 2")
+plt.title("Distribución de muestras (PCA) - Clases reales")
+out_real = "figures/training_visualization/pca_clases_reales.png"
+plt.savefig(out_real, dpi=300, bbox_inches="tight")
+plt.close()
+
+# ------------------------------------------------------------
+# 7) Visualización de predicción: Regresión Logística
+# ------------------------------------------------------------
+y_pred_logreg = logreg.predict(X_train_sel)
+y_pred_logreg_num = (y_pred_logreg == "Alzheimer's Disease").astype(int)
+
+plt.figure()
+plt.scatter(
+    X_train_pca[:, 0],
+    X_train_pca[:, 1],
+    c=y_pred_logreg_num,
+    alpha=0.7
+)
+plt.xlabel("PCA 1")
+plt.ylabel("PCA 2")
+plt.title("Predicción Regresión Logística (PCA)")
+out_logreg = "figures/training_visualization/pca_pred_logistic_regression.png"
+plt.savefig(out_logreg, dpi=300, bbox_inches="tight")
+plt.close()
+
+# ------------------------------------------------------------
+# 8) Visualización de predicción: Random Forest
+# ------------------------------------------------------------
+y_pred_rf = rf.predict(X_train_sel)
+y_pred_rf_num = (y_pred_rf == "Alzheimer's Disease").astype(int)
+
+plt.figure()
+plt.scatter(
+    X_train_pca[:, 0],
+    X_train_pca[:, 1],
+    c=y_pred_rf_num,
+    alpha=0.7
+)
+plt.xlabel("PCA 1")
+plt.ylabel("PCA 2")
+plt.title("Predicción Random Forest (PCA)")
+out_rf = "figures/training_visualization/pca_pred_random_forest.png"
+plt.savefig(out_rf, dpi=300, bbox_inches="tight")
+plt.close()
+
+print("✅ Gráficos de visualización del entrenamiento guardados:")
+print(out_real)
+print(out_logreg)
+print(out_rf)
 
